@@ -8,11 +8,14 @@ import { CardTitle, CardHeader, CardContent, CardFooter, Card, CardDescription }
 
 import { Button } from "@/app/components/ui/button"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/app/components/ui/tabs"
-import { Label } from "@/app/components/ui/label"
 import { Input } from "@/app/components/ui/input"
 import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/app/components/ui/select"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/app/components/ui/table"
-import { Checkbox } from "@/app/components/ui/checkbox"
+import {
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+} from "@/app/components/ui/resizable"
 
 function ComponentsTableCard() {
     return (
@@ -37,34 +40,17 @@ function ComponentsTableCard() {
                     <Table>
                         <TableHeader>
                             <TableRow className="space-x-1 space-y-0.5">
-                                <TableHead className="w-[100px] text-sm" />
-                                <TableHead className="text-sm">Chain ID</TableHead>
-                                <TableHead className="text-sm">Sequence Length</TableHead>
-                                <TableHead className="text-sm">Organism</TableHead>
-                                <TableHead className="text-sm" />
+                                <TableHead className="text-xs">Chain ID</TableHead>
+                                <TableHead className="text-xs">Sequence Length</TableHead>
+                                <TableHead className="text-xs">Organism</TableHead>
+                                <TableHead className="text-xs" />
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             <TableRow className="space-x-1 space-y-0.5">
-                                <TableCell>
-                                    <Checkbox id="row1" />
-                                </TableCell>
-                                <TableCell>J</TableCell>
-                                <TableCell>240</TableCell>
-                                <TableCell>E.coli</TableCell>
-                                <TableCell>
-                                    <div className="flex space-x-2">
-                                        <OptionIcon className="text-gray-500" />
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                            <TableRow className="space-x-1 space-y-0.5">
-                                <TableCell>
-                                    <Checkbox id="row2" />
-                                </TableCell>
-                                <TableCell>K</TableCell>
-                                <TableCell>250</TableCell>
-                                <TableCell>Human</TableCell>
+                                <TableCell className="text-xs">J</TableCell>
+                                <TableCell className="text-xs">240</TableCell>
+                                <TableCell className="text-xs">E.coli</TableCell>
                                 <TableCell>
                                     <div className="flex space-x-2">
                                         <OptionIcon className="text-gray-500" />
@@ -103,10 +89,17 @@ function OptionIcon(props) {
 
 export default function StructurePage() {
     return (
-        <div className="flex flex-col h-screen overflow-hidden">
 
-            <div className="flex flex-col md:flex-row h-full">
-                <div className="md:w-1/3 h-full flex-resize">
+
+         <div className="flex flex-col h-screen w-screen overflow-hidden">
+            <ResizablePanelGroup
+                direction="horizontal"
+                className=" rounded-lg border"
+            >
+
+                <ResizablePanel defaultSize={50}>
+
+
                     <Card className="h-full flex flex-col">
                         <CardHeader>
                             <CardTitle>7UNW Pseudomonas aeruginosa PAO1</CardTitle>
@@ -172,30 +165,7 @@ export default function StructurePage() {
 
                                 </TabsContent>
                                 <TabsContent value="components">
-
-
-                                            <ComponentsTableCard/>
-                                    {/* <Card>
-                                        <CardHeader>
-                                            <CardTitle>Account</CardTitle>
-                                            <CardDescription>
-                                                Make changes to your account here. Click save when you're done.
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent className="space-y-2">
-                                            <div className="space-y-1">
-                                                <Label htmlFor="name">Name</Label>
-                                                <Input id="name" defaultValue="Pedro Duarte" />
-                                            </div>
-                                            <div className="space-y-1">
-                                                <Label htmlFor="username">Username</Label>
-                                                <Input id="username" defaultValue="@peduarte" />
-                                            </div>
-                                        </CardContent>
-                                        <CardFooter>
-                                            <Button>Save changes</Button>
-                                        </CardFooter>
-                                    </Card> */}
+                                    <ComponentsTableCard />
                                 </TabsContent>
 
                             </Tabs>
@@ -211,17 +181,45 @@ export default function StructurePage() {
                             <Button>Download</Button>
                         </CardFooter> */}
                     </Card>
-                </div>
 
-                <div className="md:w-2/3 h-full">
-                    <div className="w-full h-full bg-gray-200">
-                        <div className="flex flex-col gap-4">
-                            <div />
-                        </div>
+                </ResizablePanel>
+                <ResizableHandle />
+
+                <ResizablePanel defaultSize={50}>
+
+                    <div className="flex flex-col gap-4">
+
+                        molstar
                     </div>
-                </div>
-            </div>
-        </div>
+
+                </ResizablePanel>
+
+            </ResizablePanelGroup>
+
+
+</div>
+        // <div className="flex flex-col h-screen overflow-hidden">
+
+        //     <div className="flex flex-col md:flex-row h-full">
+        //         <div className="md:w-1/3 h-full flex-resize">
+        //         </div>
+
+
+
+
+
+        //          <div className="md:w-2/3 h-full">
+        //             <div className="w-full h-full bg-gray-200">
+
+        //                 <div className="flex flex-col gap-4">
+        //                     molstar
+
+        //                     <div />
+        //                 </div>
+        //             </div>
+        //         </div> 
+        //     </div>
+        // </div>
     )
 }
 
